@@ -229,6 +229,18 @@ body{
     }
 }
 
+.footer{
+    background-color: colors.$headerColor;
+    padding: 10px 0;
+    text-align: center;
+
+    &__texto{
+        margin: 0;
+        font-size: 14px;
+        color: colors.$fontColor;
+    }
+}
+
 .container{
     padding: 0 16px;
 }
