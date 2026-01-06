@@ -1,6 +1,7 @@
 
 @use './colors.scss';
 @use './fonts.scss';
+@use 'sass:color';
 
 *{
     box-sizing: border-box;
@@ -29,8 +30,8 @@ body{
         &__lista{
             display: flex;
             list-style: none;
-            justify-content: end;
-            border-right: 16px;
+            justify-content: flex-end;
+            gap: 16px;
 
             &__item{
                 margin-right: 50px;
@@ -39,7 +40,7 @@ body{
                 &__link{
                     display: inline-block;
                     text-decoration: none;
-                    transition: transform 0,4s ease-in-out;
+                    transition: transform 0.4s ease-in-out;
 
                     &:hover{
                         transform: scale(1.2);
@@ -52,7 +53,7 @@ body{
 }
 
 .container{
-    max-width: 540px;
+    max-width: 720px;
     width: 100%;
     margin: 0 auto;
 }
@@ -67,7 +68,7 @@ body{
 
         &__foto{
             border-radius: 50%;
-            width: 50%;
+            width: 150px;
         }
 
         &__tittle{
@@ -92,7 +93,7 @@ body{
         &__logo{
             display: inline-block;
             font-size: 42px;
-            transition: transform 0,4s ease-in-out;
+            transition: transform 0.4s ease-in-out;
             
             &:hover{
                 transform: scale(1.5);
@@ -103,6 +104,21 @@ body{
 
 .projetos{
 
+    margin-top: 54px;
+
+    &__tittle{
+        font-size: 32px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    &__subtittle{
+        font-size: 16px;
+        margin-bottom: 32px;
+        text-align: justify;
+        font-weight: lighter;
+    }
+
     &__lista{
         display: flex;
         list-style: none;
@@ -110,10 +126,186 @@ body{
 
         &__item{
 
+            margin-right: 10px;
+            border: 2px solid colors.$principalColor;
+            border-radius: 8px;
+            padding: 16px;
+            width: 300px;
+            background-color: colors.$headerColor;
+
+            &__tittle{
+                font-size: 24px;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+
             &__foto{
-                width: 300px;
-                border-color: black solid;
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 8px;
+            }
+
+            &__descricao{
+                font-size: 16px;
+                line-height: 1.4;
+            }
+
+            &__acessar{
+                text-align: center;
+                margin-top: 12px;
+                display: flex;
+                justify-content: space-around;
+            
+                &__link{
+                    display: inline-block;
+                    margin-top: 12px;
+                    text-decoration: none;
+                    background-color: colors.$principalColor;;
+                    padding: 8px 12px;
+                    border-radius: 4px;
+                    font-size: 12px;
+
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
             }
         }
     }
+}
+
+.sobre{
+    margin-top: 54px;
+    
+    &__tittle{
+        font-size: 32px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    &__texto{
+        font-size: 18px;
+        line-height: 1.23;
+        text-align: justify;
+    }
+}
+
+.contato{
+    margin-top: 54px;
+    margin-bottom: 54px;
+
+    &__tittle{
+        font-size: 32px;
+        margin-bottom: 16px;
+        text-align: center;
+    }
+
+    &__input, &__textarea{
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 16px;
+        border: 2px solid colors.$principalColor;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: colors.$headerColor;
+        color: colors.$fontColor;
+    }
+
+    &__button{
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: colors.$principalColor;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        color: colors.$fontColor;
+        cursor: pointer;
+
+        &:hover{
+            background-color: color.adjust(colors.$principalColor, $lightness: -10%);
+        }
+    }
+}
+
+.container{
+    padding: 0 16px;
+}
+
+@media (max-width: 767px) {
+.header{
+    margin-bottom: 32px;
+
+    &__nav{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 8px 0;
+
+    &__name{
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    &__lista{
+        flex-direction: column;
+        gap: 8px;
+        align-self: stretch;
+        padding-left: 0;
+    }
+
+    &__lista__item{
+        margin-right: 0;
+        margin-left: 8px;
+        font-size: 18px;
+    }
+    }
+}
+
+.home{
+    &__profile{
+    &__foto{ width: 120px; }
+    &__tittle{ font-size: 1.8em; }
+    }
+
+    &__redes{
+    &__logo{ font-size: 32px; }
+    }
+}
+
+.projetos{
+    &__lista{ flex-direction: column; gap: 16px; align-items: stretch; padding: 0;}
+    &__lista__item{ width: 100%; margin-right: 0; }
+}
+
+.sobre{
+    &__texto{ font-size: 16px; }
+}
+
+.contato{
+    &__button{ font-size: 16px; }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+.container{ max-width: 720px; }
+.projetos{
+    &__lista{ flex-direction: row; flex-wrap: wrap; gap: 18px; }
+    &__lista__item{ width: calc(50% - 18px); }
+    }
+
+.header__nav__lista__item{ margin-right: 24px; font-size: 20px; }
+}
+
+@media (min-width: 1024px) {
+.container{ max-width: 1100px; }
+.projetos{
+    &__lista{ gap: 24px; }
+    &__lista__item{ width: 300px; }
+    }
+
+.header__nav{ flex-direction: row; }
+.header__nav__lista__item{ margin-right: 50px; font-size: 24px; }
+.home__profile__tittle{ font-size: 3em; }
 }
